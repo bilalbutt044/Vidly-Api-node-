@@ -1,7 +1,7 @@
-const { Customer, validate } = require('../model/customers');
+const { Customer, validate, validateId } = require('../model/customers');
 const express = require('express');
 const router = express.Router();
-
+const mongoose = require('mongoose');
 router.get('/', async (req, res) => {
     
     const customers = await Customer.find().sort('name');
@@ -9,9 +9,12 @@ router.get('/', async (req, res) => {
 }) 
 
 router.get("/:id", async (req, res) => {
+    const  result  = validateId({id: req.params.id});
+    if (result.error) return res.status(400).send(result.error.details[0].message);
+    
+  
     const customer =  await Customer.findById(req.params.id);
     if(!customer) return res.status(404).send("Customer with the given id was not found");
-
     res.send(customer);
 })
 

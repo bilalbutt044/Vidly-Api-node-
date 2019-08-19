@@ -29,5 +29,13 @@ function validateCustomer(customer) {
     return Joi.validate(customer, schema);
 }
 
+function validateCustomerId(customerId) {
+    const schema = {
+        id: Joi.objectId().required()
+    }
+    return Joi.validate(customerId, schema);
+}
+
 exports.Customer = Customer;
 exports.validate = validateCustomer;
+exports.validateId = validateCustomerId;

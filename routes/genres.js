@@ -1,6 +1,7 @@
+const mongoos = require('mongoose');
 const express = require("express");
 const router = express.Router();
-const { validate, Genre } = require('../model/genres');
+const { validate, validateId, Genre } = require('../model/genres');
 
 // get all
 router.get("/", async (req, res) => {
@@ -10,6 +11,9 @@ router.get("/", async (req, res) => {
 
 // get one
 router.get("/:id", async (req, res) => {
+  const  result  = validateId({id: req.params.id});
+  if (result.error) return res.status(400).send(result.error.details[0].message);
+
   const genre = await Genre.findById(req.params.id);
   if (!genre) res.status(404).send("the genre with given id was not found");
 
@@ -32,7 +36,9 @@ router.put("/:id", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  try {
+  const  result  = validateId({id: req.params.id});
+  if (result.error) return res.status(400).send(result.error.details[0].message);
+  
     const genre = await Genre.findByIdAndUpdate(
       req.params.id,
       {
@@ -42,19 +48,15 @@ router.put("/:id", async (req, res) => {
     );
 
     res.send(genre);
-  } catch (err) {
-    res.status(404).send("the course with given id was not found");
-  }
+  
 });
 
 router.delete("/:id", async (req, res) => {
-  try{
+  const  result  = validateId({id: req.params.id});
+  if (result.error) return res.status(400).send(result.error.details[0].message);
+  
     const genre = await Genre.findByIdAndRemove(req.params.id);
     res.send(genre);
-  }
-  catch(err) {
-    return res.status(404).send("the genre with given id was not found");
-  }
 
 });
 
