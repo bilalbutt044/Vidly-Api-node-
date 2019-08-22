@@ -4,12 +4,17 @@
   "description": "web app for practicing Nodejs and mongodb",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll --verbose"
+    "test": "jest --watchAll --verbose",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "10.15.1"
   },
   "author": "bilal",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "compression": "^1.7.4",
     "config": "^3.2.2",
     "debug": "^4.1.1",
     "express": "^4.17.1",

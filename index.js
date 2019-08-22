@@ -8,6 +8,7 @@ require('./startup/routes.js')(app);
 require('./startup/db.js')();
 require('./startup/validation');
 require('./startup/config')(app);
+require('./startup/prod.js')(app);
 
 
 app.use(express.static("public"));
