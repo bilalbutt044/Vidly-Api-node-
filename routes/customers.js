@@ -1,4 +1,5 @@
 const { Customer, validate, validateId } = require('../model/customers');
+
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');

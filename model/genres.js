@@ -26,7 +26,7 @@ function validateGenre(genre) {
 
 function validateGenreId(genreId) {
   const schema = {
-    Id: Joi.objectId()
+    id: Joi.objectId()
       .required()
   };
   return Joi.validate(genreId, schema);
