@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "fawn": "^2.1.5",
-    "helmet": "^3.20.0",
+    "helmet": "^3.21.3",
     "joi": "^14.3.1",
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
