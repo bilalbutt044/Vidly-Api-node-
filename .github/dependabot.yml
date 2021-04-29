@@ -1,0 +1,22 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "00:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: config
+    versions:
+    - 3.3.3
+    - 3.3.4
+  - dependency-name: helmet
+    versions:
+    - 4.4.1
+  - dependency-name: joi
+    versions:
+    - 17.3.0
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
